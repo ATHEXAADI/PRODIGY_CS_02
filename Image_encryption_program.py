@@ -4,11 +4,11 @@ from tkinter import Tk, filedialog, Button, Label
 from PIL import Image
 import os
 
-# Encryption/Decryption key
+
 KEY = 123
 
 def encrypt_decrypt_image(filepath, mode):
-    # Open the image
+
     img = Image.open(filepath)
     img = img.convert('RGB')
     pixels = img.load()
@@ -19,14 +19,15 @@ def encrypt_decrypt_image(filepath, mode):
         for j in range(height):
             r, g, b = pixels[i, j]
 
-            # XOR each pixel with the key
+           
+           
             r_new = r ^ KEY
             g_new = g ^ KEY
             b_new = b ^ KEY
 
             pixels[i, j] = (r_new, g_new, b_new)
 
-    # Save the new image
+
     file_base, file_ext = os.path.splitext(filepath)
     if mode == "encrypt":
         new_path = f"{file_base}_encrypted{file_ext}"
@@ -42,7 +43,7 @@ def open_file(mode):
         result_path = encrypt_decrypt_image(filepath, mode)
         status_label.config(text=f"{mode.title()}ed Image Saved:\n{result_path}")
 
-# GUI
+
 root = Tk()
 root.title("Image Encryptor/Decryptor")
 root.geometry("400x200")
